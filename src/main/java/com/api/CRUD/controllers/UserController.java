@@ -25,8 +25,13 @@ public class UserController {
         return this.userService.saveUser(user);
     }
 
-    @GetMapping
-    public Optional<UserModel> getUserById(@RequestParam("id") Long id) {
+    @GetMapping("/{id}")
+    public Optional<UserModel> getUserById(@PathVariable("id") Long id) {
         return this.userService.getUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Optional<UserModel> updateUserById(@RequestBody UserModel user,@PathVariable("id") Long id) {
+        return this.userService.updateById(user,id);
     }
 }

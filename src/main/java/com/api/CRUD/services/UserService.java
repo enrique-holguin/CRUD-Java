@@ -26,5 +26,15 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-
+    public Optional<UserModel> updateById(UserModel request,Long id) {
+        Optional<UserModel> userModelOptional = userRepository.findById(id);
+        if (userModelOptional.isEmpty()) {
+            return Optional.empty();
+        }
+        UserModel user = userModelOptional.get();
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
+        return Optional.of(user);
+    }
 }
